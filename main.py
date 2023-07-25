@@ -12,7 +12,7 @@ guessed = []
 
 states_data = pandas.read_csv("50_states.csv")
 states_list = states_data["state"].to_list()
-states_to_learn = states_list
+#states_to_learn = states_list
 
 while len(guessed) < 50:
 
@@ -29,11 +29,9 @@ while len(guessed) < 50:
     else:
         pass
 
-    for state in states_to_learn:
-        if state in guessed:
-            states_to_learn.remove(state)
-
+    states_to_learn = [state for state in states_list if state not in guessed ]
     missing_state = pandas.DataFrame(states_to_learn)
     missing_state.to_csv("States_to_Learn")
+
 
 window.exitonclick()
